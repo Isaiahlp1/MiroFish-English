@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: mirofish-backend
+    runtime: python
+    region: oregon
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && python run.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: FLASK_DEBUG
+        value: "False"
+      - key: FLASK_PORT
+        value: "10000"
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_BASE_URL
+        sync: false
+      - key: LLM_MODEL_NAME
+        sync: false
+      - key: ZEP_API_KEY
+        sync: false
