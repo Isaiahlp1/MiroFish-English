@@ -1,8 +1,10 @@
 FROM python:3.11
 
-# 安装 Node.js （满足 >=18）及必要工具
+# Install Node.js 22.x via NodeSource (replaces EOL Node 18 from apt)
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends nodejs npm \
+  && apt-get install -y --no-install-recommends ca-certificates curl \
+  && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+  && apt-get install -y --no-install-recommends nodejs \
   && rm -rf /var/lib/apt/lists/*
 
 # 从 uv 官方镜像复制 uv
